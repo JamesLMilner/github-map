@@ -103,7 +103,7 @@
               if (rate > maxRate) maxRate = rate;
               icon = icons[1];
 
-              if (rate >= 1.344 && rate <= 1.679 ) icon = icons[4];
+              if (rate >= 1.344) icon = icons[4];
               if (rate >= 1.008 && rate <= 1.343 ) icon = icons[3];
               if (rate >= 0.673 && rate <= 1.007 ) icon = icons[2];
               if (rate >= 0.337 && rate <= 0.672 ) icon = icons[1];
