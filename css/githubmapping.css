@@ -1,10 +1,11 @@
-html, body,  #map {
+html, body,  #map, #loading {
   width : 100%;
   height : 100%;
   padding: 0px;
   margin: 0px;
   font-family: 'Pavanam', Arial, sans-serif !important;
   font-size: 16px;
+  overflow: hidden;
 }
 
 h1 {
@@ -26,6 +27,7 @@ h1 {
   padding-bottom: 25px;
   padding-top: 25px;
   width: 100%;
+  font-size: 18px;
 }
 .legend {
   background-color: rgba(239, 239, 239, 0.85);
@@ -39,14 +41,14 @@ h1 {
 #loading {
   text-align: center;
   background-color: rgba(239, 239, 239, 0.95);
-  padding-top: 40%;
-  display: inline;
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 100%;
-  height: 100%;
   z-index: 1000000;
+}
+
+#loading > h1 {
+  padding-top: 20%;
 }
 
 #footer {
@@ -92,13 +94,6 @@ h1 {
 #switch:hover {
    background-color: rgba(239, 239, 239, 0.75);
 }
-
-.leaflet-marker-icon:hover {
-  -ms-transform: scale(1.1, 1.1); /* IE 9 */
-  -webkit-transform: scale(1.1, 1.1); /* Safari */
-  transform: scale(1.1, 1.1);
-}
-
 
 @media (max-width: 50em) {
   div.legend.leaflet-control, div.leaflet-bottom.leaflet-left {
