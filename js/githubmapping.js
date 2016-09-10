@@ -3,15 +3,21 @@
   var map;
   var ghLayer;
   var heat;
+  var bands = 5;
   var maxRate = 0;
   var viewMode = "markers";
   var ghGeojsonUrl = "data/github-cities.geojson";
-  var popupTemplate = "<h3>{City}</h3><p>" +
-                      "<strong>Population</strong>: {Population}<br>" +
-                      "<strong>GitHub accounts: </strong>{Total}<br>" +
-                      "<strong>% with account \n" +
-                      "</strong>: {Rate}</p><br>";
+
   var heatmapPoints = [];
+
+  var icons = [
+      [25, 23, "imgs/github.png"],
+      [35, 33, "imgs/redpolo.png"],
+      [45, 43, "imgs/americanfootball.png"],
+      [55, 53, "imgs/jetpack.png"],
+      [65, 63, "imgs/professor.png"]
+  ];
+
 
 
   init();
@@ -25,8 +31,6 @@
     L.esri.basemapLayer("GrayLabels").addTo(map);
 
     initMarkers();
-    initHeatmap();
-    initLegend();
     initListners();
 
   }
@@ -44,34 +48,25 @@
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'legend');
-        var grades = [
-            "0.361 - 1.200+",
-            "0.181 - 0.361",
-            "0.095 - 0.181",
-            "0.046 - 0.095",
-            "0.000 - 0.046"
-        ];
-        var icons = [
-            [65, 63],
-            [55, 53],
-            [45, 43],
-            [35, 33],
-            [25, 23]
-        ];
-
         var legendTitle = '<strong class="legendtitle"> % of Pop. with GitHub</strong>';
 
         //Loop through our density intervals and generate a label with a colored square for each interval
+        var lowerBounds = "0.000";
+        var upperBounds;
+        var lines = "";
 
-        div.innerHTML += legendTitle;
 
-        for (var i = 0; i < grades.length; i++) {
-
-            div.innerHTML += '<div class="legend-lines"><i class="iconstext">'+grades[i]+'</i>' +
-                             '<img style="padding-left:'+ i * 5 +'px; padding-right:'+ i * 5 +'px" class="icons" src="imgs/github.png"' +
-                             'width='+icons[i][0]+' height='+icons[i][1]+'</div>';
+        for (var i = 0; i < bands; i++) {
+            upperBounds = ((maxRate / bands) * (i + 1)).toFixed(3);
+            bounds = lowerBounds+' - '+upperBounds;
+            lines = '<div class="legend-lines"><i class="iconstext">'+bounds+'</i>' +
+                    '<img class="icons" src="'+icons[i][2]+'"' +
+                    'width='+icons[i][0]+' height='+icons[i][1]+'></div>' + lines;
+            lowerBounds = (parseFloat(upperBounds) + 0.001).toFixed(3);
         }
 
+        div.innerHTML = legendTitle + div.innerHTML;
+        div.innerHTML += lines;
         return div;
     };
     legend.addTo(map);
@@ -92,39 +87,33 @@
 
   function initMarkers() {
 
+    var popupTemplate = "<h3>{City}</h3><p>" +
+                        "<strong>Population</strong>: {Population}<br>" +
+                        "<strong>GitHub accounts: </strong>{Total}<br>" +
+                        "<strong>% with account \n" +
+                        "</strong>: {Rate}</p><br>";
+
     L.Util.ajax(ghGeojsonUrl).then(function(data){
 
       ghLayer = new L.geoJson(data, {
           pointToLayer: function (geojson, latlng) {
 
               var rate = geojson.properties.Rate;
-              var size;
+              var icon;
               if (rate > maxRate) maxRate = rate;
+              icon = icons[1];
 
-              if (rate > 1.2 ) {
-                  size = [65, 63];
-              }
-              else if (rate >= 0.361 && rate < 1.2 ) {
-                  size = [65, 63];
-              }
-              else if (rate >= 0.181 && rate < 0.361 ) {
-                  size = [55, 53];
-              }
-              else if  (rate >= 0.095 && rate < 0.181 ) {
-                  size = [45, 43];
-              }
-              else if  (rate >= 0.046 && rate < 0.095 ) {
-                  size = [35, 33];
-              }
-              else if  (rate >= 0 && rate < 0.046 )  {
-                  size = [25, 23];
-              }
+              if (rate >= 1.344 && rate < 1.679 ) icon = icons[4];
+              if (rate >= 1.008 && rate < 1.343 ) icon = icons[3];
+              if (rate >= 0.673 && rate < 1.007 ) icon = icons[2];
+              if (rate >= 0.337 && rate < 0.672 ) icon = icons[1];
+              if (rate >= 0.000 && rate < 0.336 ) icon = icons[0];
 
               return L.marker(latlng, {
                   icon: L.icon({
-                      iconUrl: "imgs/github.png",
-                      iconSize: size,
-                      iconAnchor: [size[0] / 2, size[1] / 2],
+                      iconUrl: icon[2],
+                      iconSize: [icon[0], icon[1]],
+                      iconAnchor: [icon[0] / 2, icon[1] / 2],
                       popupAnchor: [0, -11]
                   })
               })
@@ -155,6 +144,8 @@
       }).addTo(map);
 
       document.getElementById("loading").outerHTML = "";
+      initHeatmap();
+      initLegend();
 
     });
 
@@ -200,8 +191,8 @@
 
     if (viewMode === "heatmap") return;
     var zoom = map.getZoom();
-    var scaler = 2;
-    var min = 0.30;
+    var scaler = 2.1;
+    var min = 0.22;
 
     for (var id in ghLayer._layers) {
       var marker = ghLayer._layers[id];

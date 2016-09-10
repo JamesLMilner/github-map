@@ -21,4 +21,5 @@ The application uses:
 Please feel free to contribute your city! Just it to the github-cities.geojson file, with a sourced city population and the total number of GitHub users. It's probably easiest to check this manually for one off cities using the [Advanced Search functionality](https://github.com/search/advanced?q=sa&type=Repositories&utf8=%E2%9C%93).
 
 # Acknowledgements
-Thanks to [Esri](http://developers.arcgis.com) for the basemaps!
+Thanks to [Esri](http://developers.arcgis.com) for the basemaps! This is based on an open source project I [did whilst at Esri UK](http://www.github.com/JamesMilnerUK/github-mapping).
+Many thanks for the awesome Octocats from the Octodex https://octodex.github.com/ !
