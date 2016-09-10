@@ -83,7 +83,7 @@ html, body,  #map {
   width: 120px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   div.legend.leaflet-control, div.leaflet-bottom.leaflet-left {
     width: 100%;
     padding: 0px;
