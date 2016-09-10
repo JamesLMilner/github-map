@@ -143,9 +143,10 @@
 
       }).addTo(map);
 
-      document.getElementById("loading").outerHTML = "";
       initHeatmap();
       initLegend();
+      document.getElementById("loading").outerHTML = "";
+
 
     });
 
