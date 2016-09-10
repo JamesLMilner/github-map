@@ -59,7 +59,6 @@ html, body,  #map {
   font-size: 20px;
   margin-right: 10px;
   margin-bottom: 10px;
-
 }
 
 #switch {
@@ -67,12 +66,14 @@ html, body,  #map {
   top: 0;
   right: 0;
   position: absolute;
-  height: 50px;
+  font-weight: bold;
+  height: 3em;
+  width: 8em;
   border-bottom-left-radius: 3px;
   background-color: rgba(239, 239, 239, 0.85);
   outline: none;
   border: none;
-  font-size: 20px;
+  font-size: 24px;
   padding: 20px;
   text-align: center;
   vertical-align: middle;
@@ -80,10 +81,9 @@ html, body,  #map {
   border-left: 1px solid black;
   border-bottom: 1px solid black;
   cursor: pointer;
-  width: 120px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 50em) {
   div.legend.leaflet-control, div.leaflet-bottom.leaflet-left {
     width: 100%;
     padding: 0px;
