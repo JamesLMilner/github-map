@@ -3,15 +3,24 @@ html, body,  #map {
   height : 100%;
   padding: 0px;
   margin: 0px;
-  font-family: 'Pavanam', sans-serif !important;
+  font-family: 'Pavanam', Arial, sans-serif !important;
+  font-size: 14px;
 }
 .icons {
     vertical-align: middle;
     text-align: center;
+    float: right;
 }
 .iconstext {
     size: 20px;
+    vertical-align: middle;
+    line-height: 7px;
     font-weight:bold;
+}
+.legend-lines {
+  padding-bottom: 25px;
+  padding-top: 25px;
+  width: 100%;
 }
 .legend {
   background-color: rgba(239, 239, 239, 0.85);
@@ -19,6 +28,7 @@ html, body,  #map {
   border: 1px solid black;
   padding: 20px;
   margin-bottom: 35px !important;
+  font-size: 18px;
 }
 
 #loading {
@@ -46,31 +56,45 @@ html, body,  #map {
 }
 
 .legendtitle {
-  font-size: 15px;
+  font-size: 20px;
   margin-right: 10px;
   margin-bottom: 10px;
 
 }
 
-
 #switch {
   z-index: 1000;
-top: 0;
-right: 0;
-position: absolute;
-height: 50px;
-border-bottom-left-radius: 3px;
-background-color: rgba(239, 239, 239, 0.85);
-outline: none;
-border: none;
-font-size: 20px;
-padding: 20px;
-text-align: center;
-vertical-align: middle;
-line-height: 10px;
-border-left: 1px solid black;
-border-bottom: 1px solid black;
-cursor: pointer;
-width: 120px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  height: 50px;
+  border-bottom-left-radius: 3px;
+  background-color: rgba(239, 239, 239, 0.85);
+  outline: none;
+  border: none;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 10px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  width: 120px;
+}
 
+@media (max-width: 500px) {
+  div.legend.leaflet-control, div.leaflet-bottom.leaflet-left {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    outline: inherit;
+    border: none;
+    padding: 20px;
+    background-color: rgba(239, 239, 239, 0.98);
+  }
+  .icons {
+    position: absolute;
+    right: 70px;
+  }
 }
