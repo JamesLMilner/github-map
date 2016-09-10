@@ -24,8 +24,8 @@
 
   function init() {
 
-    var center = [ 54.514, -2.122];
-    var zoom = 6;
+    var center = [45.514, -2.122];
+    var zoom = 5;
     map = L.map('map').setView(center, zoom);
     L.esri.basemapLayer("Gray").addTo(map);
     L.esri.basemapLayer("GrayLabels").addTo(map);
@@ -145,6 +145,7 @@
 
       initHeatmap();
       initLegend();
+      setMarkerOpacity();
       document.getElementById("loading").outerHTML = "";
 
 
