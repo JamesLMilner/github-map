@@ -141,6 +141,8 @@
 
       }).addTo(map);
 
+      document.getElementById("loading").outerHTML = "";
+
     });
 
   }
