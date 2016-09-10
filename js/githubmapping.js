@@ -126,6 +126,18 @@
                       iconAnchor: [size[0] / 2, size[1] / 2],
                       popupAnchor: [0, -11]
                   })
+              })
+
+              // Grow and shrink on mouse over, mouse out 
+              .on("mouseover",function(marker){
+                var icon = marker.target._icon;
+                icon.style.width = icon.clientWidth * 1.2 + "px";
+                icon.style.height = icon.clientHeight * 1.2 + "px";
+              })
+              .on("mouseout",function(marker){
+                var icon = marker.target._icon;
+                icon.style.width = icon.clientWidth * 0.8 + "px";
+                icon.style.height = icon.clientHeight * 0.8 + "px";
               });
 
           },

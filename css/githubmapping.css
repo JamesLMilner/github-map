@@ -93,6 +93,13 @@ h1 {
    background-color: rgba(239, 239, 239, 0.75);
 }
 
+.leaflet-marker-icon:hover {
+  -ms-transform: scale(1.1, 1.1); /* IE 9 */
+  -webkit-transform: scale(1.1, 1.1); /* Safari */
+  transform: scale(1.1, 1.1);
+}
+
+
 @media (max-width: 50em) {
   div.legend.leaflet-control, div.leaflet-bottom.leaflet-left {
     width: 100%;
