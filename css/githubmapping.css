@@ -68,9 +68,10 @@ html, body,  #map {
   position: absolute;
   font-weight: bold;
   height: 3em;
-  width: 8em;
+  width: 20%;
+  min-width: 6em;
   border-bottom-left-radius: 3px;
-  background-color: rgba(239, 239, 239, 0.85);
+  background-color: rgba(239, 239, 239, 0.90);
   outline: none;
   border: none;
   font-size: 24px;
@@ -81,6 +82,10 @@ html, body,  #map {
   border-left: 1px solid black;
   border-bottom: 1px solid black;
   cursor: pointer;
+}
+
+#switch:hover {
+   background-color: rgba(239, 239, 239, 0.75);
 }
 
 @media (max-width: 50em) {
