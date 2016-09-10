@@ -62,13 +62,14 @@
         var legendTitle = '<strong class="legendtitle"> % of Pop. with GitHub</strong>';
 
         //Loop through our density intervals and generate a label with a colored square for each interval
+
+        div.innerHTML += legendTitle;
+
         for (var i = 0; i < grades.length; i++) {
 
-            if (i === 0) div.innerHTML += legendTitle;
-
-            else div.innerHTML += '<div class="legend-lines"><i class="iconstext">'+grades[i]+'</i>' +
-                                  '<img style="padding-left:'+ i * 5 +'px; padding-right:'+ i * 5 +'px" class="icons" src="imgs/github.png"' +
-                                  'width='+icons[i][0]+' height='+icons[i][1]+'</div>';
+            div.innerHTML += '<div class="legend-lines"><i class="iconstext">'+grades[i]+'</i>' +
+                             '<img style="padding-left:'+ i * 5 +'px; padding-right:'+ i * 5 +'px" class="icons" src="imgs/github.png"' +
+                             'width='+icons[i][0]+' height='+icons[i][1]+'</div>';
         }
 
         return div;
@@ -128,7 +129,7 @@
                   })
               })
 
-              // Grow and shrink on mouse over, mouse out 
+              // Grow and shrink on mouse over, mouse out
               .on("mouseover",function(marker){
                 var icon = marker.target._icon;
                 icon.style.width = icon.clientWidth * 1.2 + "px";
