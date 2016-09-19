@@ -20104,6 +20104,20 @@
     "Total":"1",
     "Rate":0.0000696
     }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates": [ 7.8421043, 47.9990077 ]
+    },
+    "properties": {
+    "City": "Freiburg im Breisgau",
+    "Country": "Germany",
+    "Population": 226393,
+    "Total": "4",
+    "Rate":0.0017668
+    }
   }
 ]
 }
