@@ -20118,6 +20118,20 @@
     "Total": "4",
     "Rate":0.0017668
     }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates": [ 13.1945, 55.7027 ]
+    },
+    "properties": {
+    "City": "Lund",
+    "Country": "Sweden",
+    "Population": 110824,
+    "Total": "655",
+    "Rate":0.5910272
+    }
   }
 ]
 }
