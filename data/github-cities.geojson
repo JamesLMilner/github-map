@@ -16,6 +16,20 @@
     }
   },
   {
+	 	"type": "Feature",
+		"geometry": {
+     "type": "Point",
+     "coordinates":  [ 57.461738, -20.162897 ]
+    },
+	 	"properties": {
+	 	"City":"Port Louis",
+		"Country":"Mauritius",
+		"Population": 148001,
+		"Total":"7",
+		"Rate": 0.004729697
+    }
+  },
+  {
     "type": "Feature",
     "geometry": {
        "type": "Point",
