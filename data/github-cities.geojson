@@ -17312,11 +17312,11 @@
        "coordinates":  [ 34.78057,32.08088 ]
     },
     "properties": {
-    "City":"Tel Aviv-Yafo (Tel Aviv-Jaffa)",
+    "City":"Tel Aviv",
     "Country":"Israel",
     "Population":3608000,
-    "Total":"23",
-    "Rate":0.000637472
+    "Total":"1182",
+    "Rate": 0.032760532
     }
   },
   {
