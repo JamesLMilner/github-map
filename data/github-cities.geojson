@@ -20146,6 +20146,20 @@
     "Total": "655",
     "Rate":0.5910272
     }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates": [ -2.099075, 57.149651 ]
+    },
+    "properties": {
+    "City": "Aberdeen",
+    "Country": "United Kingdom",
+    "Population": 228990,
+    "Total": "317",
+    "Rate":0.1384340
+    }
   }
 ]
 }
