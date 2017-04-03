@@ -1,4 +1,22 @@
 {
+	   "type": "FeatureCollection",
+	   "features": [
+	{
+	 	"type": "Feature",
+		"geometry": {
+	       "type": "Point",
+	       "coordinates":  [ -20.3484,57.5522]
+      },
+	 	"properties": {
+	 	"City":"Port Louis",
+		"Country":"Mauritius",
+		"Population":1200000,
+		"Total":"291",
+		"Rate":0.24
+  }
+},
+
+{
    "type": "FeatureCollection",
    "features": [
   {
