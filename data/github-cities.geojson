@@ -19027,6 +19027,20 @@
     "Rate":0.000280112
     }
   },
+    {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 10.753663,33.773293 ]
+    },
+    "properties": {
+    "City":"Djerba",
+    "Country":"Tunisia",
+    "Population":163750,
+    "Total":"8",
+    "Rate":0.00004885
+    }
+  },
   {
     "type": "Feature",
     "geometry": {
