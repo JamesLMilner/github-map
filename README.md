@@ -18,7 +18,29 @@ The application uses:
   * [Leaflet.ajax](https://github.com/calvinmetcalf/leaflet-ajax)
 
 # Contribution
-Please feel free to contribute your city! Just it to the github-cities.geojson file, with a sourced city population and the total number of GitHub users. It's probably easiest to check this manually for one off cities using the [Advanced Search functionality](https://github.com/search/advanced?q=sa&type=Repositories&utf8=%E2%9C%93).
+Please feel free to contribute your city to the project. To add your city of choice, please edit the  github-cities.geojson file, with a sourced city population and the total number of GitHub users. For example, lets say we want to add Austin, Texas. We could add this to the geojson file:
+
+```javascript
+{
+  "type": "Feature",
+  "geometry": {
+      "type": "Point",
+      "coordinates":  [ -97.74,30.27 ]
+  },
+  "properties": {
+  "City":"Austin",
+  "Country":"United States of America",
+  "Population": 2056405,
+  "Total":"12318",
+  "Rate":0.731472684
+  }
+},
+```
+
+It's probably easiest to check this manually for one off cities using the [Advanced Search functionality](https://github.com/search/advanced?q=sa&type=Repositories&utf8=%E2%9C%93), using the location search. Unfortunately, you may have to aggregate multiple search values, i.e. "Austin, Texas", "Austin, USA" to get a true representation of the values, as GitHub location field is a string of which you can input anything. We get the [population value from Wikipedia](https://en.wikipedia.org/wiki/Austin,_Texas).
+
+Please ensure the the GeoJSON is valid, for example using a tool like [GeoJSON Lint](http://geojsonlint.com/). 
+
 
 # Acknowledgements
 Thanks to [Esri](http://developers.arcgis.com) for the basemaps! This is based on an open source project I [did whilst at Esri UK](http://www.github.com/JamesMilnerUK/github-mapping).
