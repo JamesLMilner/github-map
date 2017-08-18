@@ -39,6 +39,8 @@ Please feel free to contribute your city to the project. To add your city of cho
 
 It's probably easiest to check this manually for one off cities using the [Advanced Search functionality](https://github.com/search/advanced?q=sa&type=Repositories&utf8=%E2%9C%93), using the location search. Unfortunately, you may have to aggregate multiple search values, i.e. "Austin, Texas", "Austin, USA" to get a true representation of the values, as GitHub location field is a string of which you can input anything. We get the [population value from Wikipedia](https://en.wikipedia.org/wiki/Austin,_Texas).
 
+You can also use the `github_api_one.py` script in the `scraping` folder. You will need a [GitHub API Token](https://github.com/settings/tokens) to make the requests. It is probably advisable to use an [environment variable](https://www.digitalocean.com/community/tutorials/how-to-read-and-set-environmental-and-shell-variables-on-a-linux-vps) for the token, as `GITHUB_MAP_TOKEN`.
+
 Please ensure the the GeoJSON is valid, for example using a tool like [GeoJSON Lint](http://geojsonlint.com/). 
 
 
