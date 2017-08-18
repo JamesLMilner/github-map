@@ -9,7 +9,6 @@ import StringIO
 from urllib2 import urlopen, Request, HTTPError
 from urllib import quote
 
-
 #https://github.com/settings/tokens
 TOKEN = ""
 
