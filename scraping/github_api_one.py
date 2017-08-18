@@ -41,8 +41,7 @@ def city_users(variation, country, token):
     return total
 
 if __name__ == "__main__":
-    if sys.argv[1]:
-        print TOKEN
+    if sys.argv[1]: 
         PLACE = sys.argv[1].split(",")
         CITY = PLACE[0]
         COUNTRY = PLACE[1]
