@@ -43,7 +43,6 @@ You can also use the `github_api_one.py` script in the `scraping` folder. You wi
 
 Please ensure the the GeoJSON is valid, for example using a tool like [GeoJSON Lint](http://geojsonlint.com/). 
 
-
 # Acknowledgements
 Thanks to [Esri](http://developers.arcgis.com) for the basemaps! This is based on an open source project I [did whilst at Esri UK](http://www.github.com/JamesMilnerUK/github-mapping).
 Many thanks for the awesome Octocats from the Octodex https://octodex.github.com/ !

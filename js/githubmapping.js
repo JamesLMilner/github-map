@@ -18,8 +18,6 @@
       [65, 63, "imgs/professor.png"]
   ];
 
-
-
   init();
 
   function init() {
@@ -74,18 +72,32 @@
   }
 
   function initHeatmap() {
-
-     heat = L.heatLayer(heatmapPoints, {
-        minOpacity : 0.7,
-        max : 0.9,
-        radius : 18,
-        blur : 23,
-        gradient : {0.22: 'blue', 0.72: 'salmon', 1: 'dimgray'}
+    
+    var gradient = {
+          0.0: '#eeeeee',
+          0.25 : '#c6e48b', 
+          0.50: '#7bc96f', 
+          0.75 : '#239a3b',
+          1.0: '#196127'
+    };
+    
+    heat = L.heatLayer(heatmapPoints, {
+        minOpacity : 0.65,
+        max : 0.95,
+        radius : 20,
+        blur : 25,
+        gradient : gradient
     });
 
   }
 
   function initMarkers() {
+
+    L.Util.ajax(ghGeojsonUrl).then(handleGeoJson);
+
+  }
+
+  function handleGeoJson(data) {
 
     var popupTemplate = "<h3>{City}</h3><p>" +
                         "<strong>Population</strong>: {Population}<br>" +
@@ -93,63 +105,58 @@
                         "<strong>% with account \n" +
                         "</strong>: {Rate}</p><br>";
 
-    L.Util.ajax(ghGeojsonUrl).then(function(data){
+    ghLayer = new L.geoJson(data, {
+        pointToLayer: function (geojson, latlng) {
 
-      ghLayer = new L.geoJson(data, {
-          pointToLayer: function (geojson, latlng) {
+            var rate = geojson.properties.Rate;
+            var icon;
+            if (rate > maxRate) maxRate = rate;
+            icon = icons[1];
 
-              var rate = geojson.properties.Rate;
-              var icon;
-              if (rate > maxRate) maxRate = rate;
-              icon = icons[1];
+            if (rate >= 1.344) icon = icons[4];
+            if (rate >= 1.008 && rate <= 1.343 ) icon = icons[3];
+            if (rate >= 0.673 && rate <= 1.007 ) icon = icons[2];
+            if (rate >= 0.337 && rate <= 0.672 ) icon = icons[1];
+            if (rate >= 0.000 && rate <= 0.336 ) icon = icons[0];
 
-              if (rate >= 1.344) icon = icons[4];
-              if (rate >= 1.008 && rate <= 1.343 ) icon = icons[3];
-              if (rate >= 0.673 && rate <= 1.007 ) icon = icons[2];
-              if (rate >= 0.337 && rate <= 0.672 ) icon = icons[1];
-              if (rate >= 0.000 && rate <= 0.336 ) icon = icons[0];
+            return L.marker(latlng, {
+                icon: L.icon({
+                    iconUrl: icon[2],
+                    iconSize: [icon[0], icon[1]],
+                    iconAnchor: [icon[0] / 2, icon[1] / 2],
+                    popupAnchor: [0, -11]
+                })
+            })
 
-              return L.marker(latlng, {
-                  icon: L.icon({
-                      iconUrl: icon[2],
-                      iconSize: [icon[0], icon[1]],
-                      iconAnchor: [icon[0] / 2, icon[1] / 2],
-                      popupAnchor: [0, -11]
-                  })
-              })
+            // Grow and shrink on mouse over, mouse out
+            .on("mouseover",function(marker){
+              var icon = marker.target._icon;
+              icon.style.width = icon.clientWidth * 1.2 + "px";
+              icon.style.height = icon.clientHeight * 1.2 + "px";
+            })
+            .on("mouseout",function(marker){
+              var icon = marker.target._icon;
+              icon.style.width = icon.clientWidth * 0.8 + "px";
+              icon.style.height = icon.clientHeight * 0.8 + "px";
+            });
 
-              // Grow and shrink on mouse over, mouse out
-              .on("mouseover",function(marker){
-                var icon = marker.target._icon;
-                icon.style.width = icon.clientWidth * 1.2 + "px";
-                icon.style.height = icon.clientHeight * 1.2 + "px";
-              })
-              .on("mouseout",function(marker){
-                var icon = marker.target._icon;
-                icon.style.width = icon.clientWidth * 0.8 + "px";
-                icon.style.height = icon.clientHeight * 0.8 + "px";
-              });
+        },
 
-          },
+        onEachFeature : function(feature, layer) {
+          var point = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
+          point.push(feature.properties.Rate);
+          heatmapPoints.push(point);
 
-          onEachFeature : function(feature, layer) {
-            var point = [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
-            point.push(feature.properties.Rate);
-            heatmapPoints.push(point);
+          feature.properties.Rate = parseFloat(feature.properties.Rate).toFixed(3);
+          layer.bindPopup(L.Util.template(popupTemplate, feature.properties));
+        }
 
-            feature.properties.Rate = parseFloat(feature.properties.Rate).toFixed(3);
-            layer.bindPopup(L.Util.template(popupTemplate, feature.properties));
-          }
+    }).addTo(map);
 
-      }).addTo(map);
-
-      initHeatmap();
-      initLegend();
-      setMarkerOpacity();
-      document.getElementById("loading").outerHTML = "";
-
-
-    });
+    initHeatmap();
+    initLegend();
+    setMarkerOpacity();
+    document.getElementById("loading").outerHTML = "";
 
   }
 
